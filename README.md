@@ -1,4 +1,3 @@
-![image](https://github.com/user-attachments/assets/7ba0dc57-bdef-4a2c-8b33-62b8f8430701)# Coffee-Sales-Shop
 Gather the requirements to do analysis for the Coffee Sales Shop where have to create an interactive dashboard based on client desire requirement
 Client Requirement:- 
 
