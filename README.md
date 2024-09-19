@@ -49,3 +49,25 @@ Client Requirement:-
 - Utilize a heat map to visualize sales patterns by days and hours.
 - Implement tooltips to display detailed metrics (Sales, Orders, Quantity) when hovering over a specific day-hour.
 
+**Created a date table Using DAX Expressions**
+- **Step 1:-** Create a Date Table in Power BI.
+- **Step 2:-** Generate the Date column based on the transaction date from the Coffee Sales table.
+         **Date Table = CALENDAR(MIN(Coffee_Sales[transaction_date]),Max(Coffee_Sales[transaction_date]))**
+- **Step 3:-** Add a "Month" column to display the month abbreviation.
+         **Month = FORMAT('Date Table'[Date], "mmm")**
+- **Step 4:-** Add a "Month Number" column to display the numerical value of the month.
+         **Month Number = MONTH('Date Table'[Date])**
+- **Step 5:-** Add a "Month Year" column to display the month and year together.
+         **Month Year = FORMAT('Date Table'[Date], "mmm yyyy")**
+- **Step 6:-** Add a "Day Name" column to display the day of the week abbreviation.
+         **Day Name = FORMAT('Date Table'[Date], "DDD")**
+- **Step 7:-** AAdd a "Week Number" column to display the week number (ISO format).
+         **Week Number = WEEKNUM('Date Table'[Date], 2)**
+- **Step 8:-** Add a "Day Number" column to display the day of the month.
+         **Day Number = FORMAT('Date Table'[Date], "D")**
+- **Step 9:-** Add a "Week Day Number" column to display the numerical value for the day of the week.
+         **Week Day Number = WEEKDAY('Date Table'[Date], 2)**
+- **Step 10:-** Add a "Weekday/Weekend" column to distinguish between weekdays and weekends.
+         **Weekday / Weekend = IF('Date Table'[Day Name] = "Sat" || 'Date Table'[Day Name] = "Sun", "Weekend", "Weekday")**
+
+  
