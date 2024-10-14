@@ -103,26 +103,32 @@ Client Requirement:-
                       TOTALMTD(CALCULATE([Total Sales], 'Date Table'[Month] = selected_month),'Date Table'[Date])
 
 <br> **Total Orders**
-         Total Orders = DISTINCTCOUNT(Coffee_Sales[transaction_id])
+         
+           Total Orders = DISTINCTCOUNT(Coffee_Sales[transaction_id])
 
 <br> **PM Order**
-         PM Order = CALCULATE([CM Orders], DATEADD('Date Table'[Date], -1, MONTH))
+         
+           PM Order = CALCULATE([CM Orders], DATEADD('Date Table'[Date], -1, MONTH))
 
 <br> **CM Sales**
-         CM Sales = VAR selected_month = SELECTEDVALUE('Date Table'[Month])
-                  RETURN
-                  TOTALMTD(CALCULATE([Total Sales], 'Date Table'[Month] = selected_month),'Date Table'[Date])
+         
+           CM Sales = VAR selected_month = SELECTEDVALUE('Date Table'[Month])
+                     RETURN
+                     TOTALMTD(CALCULATE([Total Sales], 'Date Table'[Month] = selected_month),'Date Table'[Date])
 
 <br> **Total Quantity**
-         Total Quantity = SUM(Coffee_Sales[transaction_qty])
+         
+           Total Quantity = SUM(Coffee_Sales[transaction_qty])
 
 <br> **PM Quantity Sold**
-         PM Quantity Sold = CALCULATE([CM Quantity Sold], DATEADD('Date Table'[Date], -1, MONTH))
+         
+           PM Quantity Sold = CALCULATE([CM Quantity Sold], DATEADD('Date Table'[Date], -1, MONTH))
 
 <br> **CM Quantity Sold**
-         CM Quantity Sold = VAR selected_month = SELECTEDVALUE('Date Table'[Month])
-                           RETURN
-                           TOTALMTD(CALCULATE([Total Quantity], 'Date Table'[Month] = selected_month),'Date Table'[Date])
+         
+           CM Quantity Sold = VAR selected_month = SELECTEDVALUE('Date Table'[Month])
+                              RETURN
+                              TOTALMTD(CALCULATE([Total Quantity], 'Date Table'[Month] = selected_month),'Date Table'[Date])
 
 
   
