@@ -71,12 +71,16 @@ Client Requirement:-
          <br>**Weekday / Weekend = IF('Date Table'[Day Name] = "Sat" || 'Date Table'[Day Name] = "Sun", "Weekend", "Weekday")**
 - **Step 11:-** Calculate "Total Sales", "PM Sales", "CM Sales", "Total Orders", "PM Orders", "CM Orders", "Total Quantity", "PM Quantity Sold", "CM Quantity Sold".
          <br> **Total Sales = SUM(Coffee_Sales[Sales])**
+
          <br> **PM Sales = CALCULATE([CM Sales], DATEADD('Date Table'[Date], -1, MONTH))**
+         
          <br> **CM Sales = VAR selected_month = SELECTEDVALUE('Date Table'[Month])
                            RETURN
                            TOTALMTD(CALCULATE([Total Sales], 'Date Table'[Month] = selected_month),'Date Table'[Date])**
-         <br> **Total Orders = DISTINCTCOUNT(Coffee_Sales[transaction_id])**
-         <br> **PM Order = CALCULATE([CM Orders], DATEADD('Date Table'[Date], -1, MONTH))**
+
+           <br> **Total Orders = DISTINCTCOUNT(Coffee_Sales[transaction_id])**
+
+  <br> **PM Order = CALCULATE([CM Orders], DATEADD('Date Table'[Date], -1, MONTH))**
          <br> **CM Sales = VAR selected_month = SELECTEDVALUE('Date Table'[Month])
                            RETURN
                            TOTALMTD(CALCULATE([Total Sales], 'Date Table'[Month] = selected_month),'Date Table'[Date])**
