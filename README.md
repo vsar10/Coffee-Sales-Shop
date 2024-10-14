@@ -167,3 +167,13 @@ Client Requirement:-
                    VAR _sign_trend = IF (month_diff > 0, "▲", "▼")
                    RETURN
                    _sign_trend & " " & _sign & FORMAT(Mom, "#0.0%" & " | " & _sign & FORMAT(month_diff/1000, "0.0K")) & " " & "vs LM"
+
+- **Step 17**:- Calculated " New MoM Label" in terms of Sales
+
+             New MoM Label = 
+                   VAR month_diff = [CM Sales]-[PM Sales]
+                   VAR Mom = ([CM Sales]-[PM Sales])/[PM Sales]
+                   VAR _sign = IF(month_diff > 0, "+","")
+                   VAR _sign_trend = IF (month_diff > 0, "▲", "▼")
+                   RETURN
+                   _sign_trend & " " & _sign & FORMAT(Mom, "#0.0%")
