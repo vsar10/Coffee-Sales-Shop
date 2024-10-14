@@ -53,64 +53,65 @@ Client Requirement:-
 - **Step 1:-** Create a Date Table in Power BI.
 - **Step 2:-** Generate the Date column based on the transaction date from the Coffee Sales table.
 
-         <br>**Date Table = CALENDAR(MIN(Coffee_Sales[transaction_date]),Max(Coffee_Sales[transaction_date]))**
+         <br> Date Table = CALENDAR(MIN(Coffee_Sales[transaction_date]),Max(Coffee_Sales[transaction_date]))
 
 - **Step 3:-** Add a "Month" column to display the month abbreviation.
 
-         <br>**Month = FORMAT('Date Table'[Date], "mmm")**
+         <br> Month = FORMAT('Date Table'[Date], "mmm")
 
 - **Step 4:-** Add a "Month Number" column to display the numerical value of the month.
 
-         <br>**Month Number = MONTH('Date Table'[Date])**
+         <br> Month Number = MONTH('Date Table'[Date])
 
 - **Step 5:-** Add a "Month Year" column to display the month and year together.
 
-         <br>**Month Year = FORMAT('Date Table'[Date], "mmm yyyy")**
+         <br> Month Year = FORMAT('Date Table'[Date], "mmm yyyy")
 
 - **Step 6:-** Add a "Day Name" column to display the day of the week abbreviation.
 
-         <br>**Day Name = FORMAT('Date Table'[Date], "DDD")**
+         <br> Day Name = FORMAT('Date Table'[Date], "DDD")
 
 - **Step 7:-** AAdd a "Week Number" column to display the week number (ISO format).
 
-         <br>**Week Number = WEEKNUM('Date Table'[Date], 2)**
+         <br> Week Number = WEEKNUM('Date Table'[Date], 2)
+
 - **Step 8:-** Add a "Day Number" column to display the day of the month.
 
-         <br>**Day Number = FORMAT('Date Table'[Date], "D")**
+         <br> Day Number = FORMAT('Date Table'[Date], "D")
 
 - **Step 9:-** Add a "Week Day Number" column to display the numerical value for the day of the week.
 
-         <br>**Week Day Number = WEEKDAY('Date Table'[Date], 2)**
+         <br> Week Day Number = WEEKDAY('Date Table'[Date], 2)
 
 - **Step 10:-** Add a "Weekday/Weekend" column to distinguish between weekdays and weekends.
 
-         <br>**Weekday / Weekend = IF('Date Table'[Day Name] = "Sat" || 'Date Table'[Day Name] = "Sun", "Weekend", "Weekday")**
+         <br> Weekday / Weekend = IF('Date Table'[Day Name] = "Sat" || 'Date Table'[Day Name] = "Sun", "Weekend", "Weekday")
 
 - **Step 11:-** Calculate "Total Sales", "PM Sales", "CM Sales", "Total Orders", "PM Orders", "CM Orders", "Total Quantity", "PM Quantity Sold", "CM Quantity Sold".
 
-         <br> **Total Sales = SUM(Coffee_Sales[Sales])**
+         <br> Total Sales = SUM(Coffee_Sales[Sales])
 
-         <br> **PM Sales = CALCULATE([CM Sales], DATEADD('Date Table'[Date], -1, MONTH))**
+         <br> PM Sales = CALCULATE([CM Sales], DATEADD('Date Table'[Date], -1, MONTH))
          
-         <br> **CM Sales = VAR selected_month = SELECTEDVALUE('Date Table'[Month])
+         <br> CM Sales = VAR selected_month = SELECTEDVALUE('Date Table'[Month])
                            RETURN
-                           TOTALMTD(CALCULATE([Total Sales], 'Date Table'[Month] = selected_month),'Date Table'[Date])**
+                           TOTALMTD(CALCULATE([Total Sales], 'Date Table'[Month] = selected_month),'Date Table'[Date])
 
-         <br> **Total Orders = DISTINCTCOUNT(Coffee_Sales[transaction_id])**
+         <br> Total Orders = DISTINCTCOUNT(Coffee_Sales[transaction_id])
 
-         <br> **PM Order = CALCULATE([CM Orders], DATEADD('Date Table'[Date], -1, MONTH))**
+         <br> PM Order = CALCULATE([CM Orders], DATEADD('Date Table'[Date], -1, MONTH))
 
-         <br> **CM Sales = VAR selected_month = SELECTEDVALUE('Date Table'[Month])
+         <br> CM Sales = VAR selected_month = SELECTEDVALUE('Date Table'[Month])
                            RETURN
-                           TOTALMTD(CALCULATE([Total Sales], 'Date Table'[Month] = selected_month),'Date Table'[Date])**
+                           TOTALMTD(CALCULATE([Total Sales], 'Date Table'[Month] = selected_month),'Date Table'[Date])
 
-         <br> **Total Quantity = SUM(Coffee_Sales[transaction_qty])**
+         <br> Total Quantity = SUM(Coffee_Sales[transaction_qty])
 
-         <br> **PM Quantity Sold = CALCULATE([CM Quantity Sold], DATEADD('Date Table'[Date], -1, MONTH))**
+         <br> PM Quantity Sold = CALCULATE([CM Quantity Sold], DATEADD('Date Table'[Date], -1, MONTH))
 
-         <br> **CM Quantity Sold = VAR selected_month = SELECTEDVALUE('Date Table'[Month])
+         <br> CM Quantity Sold = VAR selected_month = SELECTEDVALUE('Date Table'[Month])
                                     RETURN
-                                    TOTALMTD(CALCULATE([Total Quantity], 'Date Table'[Month] = selected_month),'Date Table'[Date])**
+                                    TOTALMTD(CALCULATE([Total Quantity], 'Date Table'[Month] = selected_month),'Date Table'[Date])
 
 
   
