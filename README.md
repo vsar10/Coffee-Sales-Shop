@@ -90,7 +90,7 @@ Client Requirement:-
 - **Step 11:-** Calculate "Total Sales", "PM Sales", "CM Sales", "Total Orders", "PM Orders", "CM Orders", "Total Quantity", "PM Quantity Sold", "CM Quantity Sold".
 <br> **Total Sales**
 
-           <br> Total Sales = SUM(Coffee_Sales[Sales])
+            Total Sales = SUM(Coffee_Sales[Sales])
 
 <br> **PM Sales**
           PM Sales = CALCULATE([CM Sales], DATEADD('Date Table'[Date], -1, MONTH))
