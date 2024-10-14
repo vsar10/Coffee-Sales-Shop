@@ -130,5 +130,20 @@ Client Requirement:-
                               RETURN
                               TOTALMTD(CALCULATE([Total Quantity], 'Date Table'[Month] = selected_month),'Date Table'[Date])
 
+- **Step 12**:- Create a condition for "Color of Bars" such as "Above Average" or "Below Average" with respect to "Total Sales"
 
-  
+           Color for Bars = IF([Total Sales]> [Daily Avg Sales], "Above Average", "Below Average")
+
+- **Step 13**:- Calculated "Daily Avg Sales" for Coffee with respect to "transaction date"
+
+           Daily Avg Sales = AVERAGEX(ALLSELECTED(Coffee_Sales[transaction_date]),[Total Sales])
+
+- **Step 14**:- Calculate "Mom Growth & Diff Order" in terms of Orders 
+
+             MOM Growth & Diff Order = 
+                   VAR month_diff = [CM Orders]-[PM Order]
+                   VAR Mom = ([CM Orders]-[PM Order])/[PM Order]
+                   VAR _sign = IF(month_diff > 0, "+","")
+                   VAR _sign_trend = IF (month_diff > 0, "▲", "▼")
+                   RETURN
+                   _sign_trend & " " & _sign & FORMAT(Mom, "#0.0%" & " | " & _sign & FORMAT(month_diff/1000, "0.0K")) & " " & "vs LM"
