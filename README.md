@@ -71,7 +71,7 @@ Client Requirement:-
 
            Day Name = FORMAT('Date Table'[Date], "DDD")
 
-- **Step 7:-** AAdd a "Week Number" column to display the week number (ISO format).
+- **Step 7:-** Add a "Week Number" column to display the week number (ISO format).
 
            Week Number = WEEKNUM('Date Table'[Date], 2)
 
@@ -87,7 +87,7 @@ Client Requirement:-
 
            Weekday / Weekend = IF('Date Table'[Day Name] = "Sat" || 'Date Table'[Day Name] = "Sun", "Weekend", "Weekday")
 
-- **Step 11:-** Calculate "Total Sales", "PM Sales", "CM Sales", "Total Orders", "PM Orders", "CM Orders", "Total Quantity", "PM Quantity Sold", "CM Quantity Sold".
+- **Step 11:-** Calculated "Total Sales", "PM Sales", "CM Sales", "Total Orders", "PM Orders", "CM Orders", "Total Quantity", "PM Quantity Sold", "CM Quantity Sold".
 <br> **Total Sales**
 
            Total Sales = SUM(Coffee_Sales[Sales])
@@ -138,11 +138,31 @@ Client Requirement:-
 
            Daily Avg Sales = AVERAGEX(ALLSELECTED(Coffee_Sales[transaction_date]),[Total Sales])
 
-- **Step 14**:- Calculate "Mom Growth & Diff Order" in terms of Orders 
+- **Step 14**:- Calculated "Mom Growth & Diff Order" in terms of Orders 
 
              MOM Growth & Diff Order = 
                    VAR month_diff = [CM Orders]-[PM Order]
                    VAR Mom = ([CM Orders]-[PM Order])/[PM Order]
+                   VAR _sign = IF(month_diff > 0, "+","")
+                   VAR _sign_trend = IF (month_diff > 0, "▲", "▼")
+                   RETURN
+                   _sign_trend & " " & _sign & FORMAT(Mom, "#0.0%" & " | " & _sign & FORMAT(month_diff/1000, "0.0K")) & " " & "vs LM"
+
+- **Step 15**:- Calculated "MOM Growth & Diff Quantity Sold" in terms of Quantity Sold
+
+             MOM Growth & Diff Quantity Sold = 
+                   VAR month_diff = [CM Quantity Sold]-[PM Quantity Sold]
+                   VAR Mom = ([CM Quantity Sold]-[PM Quantity Sold])/[PM Quantity Sold]
+                   VAR _sign = IF(month_diff > 0, "+","")
+                   VAR _sign_trend = IF (month_diff > 0, "▲", "▼")
+                   RETURN
+                   _sign_trend & " " & _sign & FORMAT(Mom, "#0.0%" & " | " & _sign & FORMAT(month_diff/1000, "0.0K")) & " " & "vs LM"
+
+- **Step 16**:- Calculated "MOM Growth & Diff Sales" in terms of Sales
+
+             MOM Growth & Diff Sales = 
+                   VAR month_diff = [CM Sales]-[PM Sales]
+                   VAR Mom = ([CM Sales]-[PM Sales])/[PM Sales]
                    VAR _sign = IF(month_diff > 0, "+","")
                    VAR _sign_trend = IF (month_diff > 0, "▲", "▼")
                    RETURN
