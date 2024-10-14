@@ -90,17 +90,17 @@ Client Requirement:-
 - **Step 11:-** Calculate "Total Sales", "PM Sales", "CM Sales", "Total Orders", "PM Orders", "CM Orders", "Total Quantity", "PM Quantity Sold", "CM Quantity Sold".
 <br> **Total Sales**
 
-  Total Sales = SUM(Coffee_Sales[Sales])
+           Total Sales = SUM(Coffee_Sales[Sales])
 
 <br> **PM Sales**
 
-  PM Sales = CALCULATE([CM Sales], DATEADD('Date Table'[Date], -1, MONTH))
+           PM Sales = CALCULATE([CM Sales], DATEADD('Date Table'[Date], -1, MONTH))
 
 <br> **CM Sales**
           
-  CM Sales = VAR selected_month = SELECTEDVALUE('Date Table'[Month])
-             RETURN
-             TOTALMTD(CALCULATE([Total Sales], 'Date Table'[Month] = selected_month),'Date Table'[Date])
+           CM Sales = VAR selected_month = SELECTEDVALUE('Date Table'[Month])
+                      RETURN
+                      TOTALMTD(CALCULATE([Total Sales], 'Date Table'[Month] = selected_month),'Date Table'[Date])
 
 <br> **Total Orders**
          Total Orders = DISTINCTCOUNT(Coffee_Sales[transaction_id])
